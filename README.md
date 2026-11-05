@@ -1,44 +1,45 @@
-# Little Wonder Wheels — Wonder Island
+# Little Wonder Wheels 2.0 — Magical Adventure
 
-Game 3D sederhana untuk anak, berbasis Three.js. **Versi: web release candidate 1.0.1 (perbaikan tombol Ayo Main)**.
+A child-friendly 3D browser game based on the working v1.0.2 prototype. Built with Three.js, no account, ads, or analytics.
 
-## Perbaikan v1.0.1
-- Deklarasi dan pemulihan data `stars`, `bikeColor`, dan `visits` yang sebelumnya hilang dan menghentikan inisialisasi game.
-- Peningkatan versi service worker untuk mengurangi masalah cache lama.
-- Pesan bantuan jika library game gagal dimuat.
+## Play
 
-## Fitur
-- Pulau 3D pastel dengan rumah, pepohonan, bunga, sungai, dan Bibi si kelinci.
-- Ride: sepeda otomatis maju; tahan tombol kiri/kanan untuk belok.
-- Build: tekan Place tiga kali untuk membuat jembatan.
-- Paint: pilih warna, lalu sentuh bunga, pohon, atau balok jembatan.
-- Wonder Book: tiga bintang pencapaian (jembatan, mewarnai, bertemu Bibi).
-- Warna sepeda bisa diganti di Settings.
-- Progres tersimpan secara lokal di browser, tanpa akun.
-- PWA/service worker untuk caching setelah akses online pertama (bergantung dukungan browser).
+Publish all files in this folder to the root of a GitHub Pages repository. The `index.html` file must be at the repository root. Open the HTTPS Pages URL in a modern browser. Internet is required to load Three.js from a CDN (with fallback).
 
-## Cara menjalankan
-1. Ekstrak ZIP. Jangan mengubah struktur folder.
-2. Jalankan server lokal dari folder proyek, misalnya `python -m http.server 8000`.
-3. Buka `http://localhost:8000` di browser desktop. Untuk Android, gunakan GitHub Pages (HTTPS).
-4. Three.js dimuat dari CDN pada akses pertama, jadi perlu internet pada saat itu.
+## Controls
 
-## GitHub Pages
-1. Buat repository baru dan upload **semua file di folder ini** ke root branch `main`.
-2. Repository → Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
-3. Buka alamat yang diberikan GitHub Pages, misalnya `https://USERNAME.github.io/REPO/`.
-4. Buka di Chrome Android, putar HP landscape, lalu pilih **Ayo Main!**.
+- **Ayo Main:** start the game.
+- **Ride:** left/right on screen or arrow keys / A/D on desktop. The bicycle moves forward automatically by default. Use the bell button for a chime.
+- **Build:** drag the brick tile from the tray and release to snap the next bridge section, or press **Place**. Three sections complete the bridge. This is an assisted drag-to-place interaction, not freeform block construction.
+- **Paint:** choose a swatch and tap a flower, tree, or bridge block.
+- **Wonder Book:** view 5 achievements and 3 adventures.
+- **Petualangan:** cycle through Bibi bridge, Poppy garden (color 5 distinct plants), and Milo bicycle park (ride near Milo).
+- **Settings:** toggle Indonesian voice instructions (uses browser speech synthesis if supported), visual effects, and easy ride; customize bicycle frame color; reset progress.
 
-## Kontrol
-- Ride: kiri/kanan layar, atau keyboard panah kiri/kanan.
-- Build: pilih Build, lalu Place tiga kali (keyboard: 2, lalu spasi).
-- Paint: pilih Paint, warna, dan tap objek (keyboard: 3).
-- Mode Ride via keyboard: 1.
-- ⭐: album Wonder Book.
-- ⚙️: pengaturan, ganti warna sepeda, reset progres.
+## Save compatibility
 
-## Catatan kualitas
-Game ini adalah versi **fitur inti lengkap untuk pengujian keluarga**, bukan rilis komersial Play Store. Perlu pengujian nyata pada berbagai HP, evaluasi aksesibilitas dan UX anak, pengembangan aset original, serta review kebijakan privasi sebelum publikasi komersial.
+The game intentionally retains the `lww_proto_v1` localStorage key from v1.0.2 and adds new fields. Existing saves should load. Browser clearing site data or resetting progress deletes local progress.
 
-## Privasi
-Tidak ada analytics, login, chat, iklan, atau pengumpulan informasi pribadi dalam kode game. LocalStorage menyimpan progres hanya pada browser perangkat. Dependensi Three.js dimuat dari CDN eksternal. Lihat `PRIVACY.md`.
+## Test checklist
+
+1. Ayo Main opens the world (desktop and Android).
+2. Ride and steering work, with a following camera.
+3. Build by dragging a brick or using Place; complete bridge.
+4. Paint five distinct plants in Poppy's quest.
+5. Ride near Milo to unlock the park achievement.
+6. Wonder Book displays achievements and quests.
+7. Reload and verify bridge, colors, quest and settings persist.
+8. Test landscape Android Chrome and check touch targets / FPS.
+9. Test with network unavailable after first load; CDN dependencies may still prevent fully offline use.
+
+## Known limitations
+
+- Three.js is loaded from a third-party CDN. Offline reliability is not guaranteed.
+- Dragging a brick anywhere over the game places the next bridge segment; this is an assisted snap interaction, not true 3D free-placement.
+- Indonesian speech depends on the device/browser voices and may not be available.
+- Performance and touchscreen usability have not been validated on physical Android devices in this environment.
+- This is a feature-rich web prototype, not a Play Store-ready commercial release.
+
+## Development
+
+All app code is in `index.html`. No build step is required. Use a local static server for testing (`python -m http.server 8000`), or GitHub Pages. `sw.js` handles PWA cache lifecycle. No personal data is transmitted by game logic.
