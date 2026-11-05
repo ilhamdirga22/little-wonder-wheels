@@ -1,6 +1,11 @@
 # Little Wonder Wheels — Wonder Island
 
-Game 3D sederhana untuk anak, berbasis Three.js. **Versi: playable web release candidate 1.0**.
+Game 3D sederhana untuk anak, berbasis Three.js. **Versi: web release candidate 1.0.1 (perbaikan tombol Ayo Main)**.
+
+## Perbaikan v1.0.1
+- Deklarasi dan pemulihan data `stars`, `bikeColor`, dan `visits` yang sebelumnya hilang dan menghentikan inisialisasi game.
+- Peningkatan versi service worker untuk mengurangi masalah cache lama.
+- Pesan bantuan jika library game gagal dimuat.
 
 ## Fitur
 - Pulau 3D pastel dengan rumah, pepohonan, bunga, sungai, dan Bibi si kelinci.
